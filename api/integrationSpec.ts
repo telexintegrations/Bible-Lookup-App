@@ -1,41 +1,42 @@
 export const integrationSpec = {
     "data": {
-      "date": {
+        "date": {
         "created_at": "2025-02-20",
         "updated_at": "2025-02-20"
-      },
-      "descriptions": {
+    }, 
+    "descriptions": {
         "app_description": "Automatically replaces Bible references with their messages/texts.",
         "app_logo": "https://toppng.com/uploads/preview/clip-free-clipart-open-bible-bible-on-white-background-115630054979wbeso9kz3.png",
         "app_name": "Bible Lookup.",
         "app_url": "URL to the application or service.",
         "background_color": "#000000"
-      },
-      "integration_category": "Performance Monitoring",
-      "integration_type": "modifier",
-      "is_active": false,
-      "output": [
+    },
+    "integration_category": 
+    "Performance Monitoring",
+    "integration_type": "modifier",
+    "is_active": false,
+    "output": [
         {
-          "label": "output_channel_1",
-          "value": true
+            "label": "output_channel_1",
+            "value": true
         },
         {
-          "label": "output_channel_2",
-          "value": false
+            "label": "output_channel_2",
+            "value": false
         }
-      ],
-      "key_features": [
+    ],
+    "key_features": [
         "Feature description 1.",
         "Feature description 2.",
         "Feature description 3.",
         "Feature description 4."
-      ],
-      "permissions": {
+    ],
+    "permissions": {
         "monitoring_user": {
-          "always_online": true,
-          "display_name": "Performance Monitor"
+            "always_online": true,
+            "display_name": "Performance Monitor"
         }
-      },
+    },
       "settings": [
         {
           "label": "Gender",
