@@ -1,11 +1,11 @@
 {
   "name": "telex-integration-bible-lookup",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/server.js",
-    "dev": "nodemon --exec ts-node ./api/server.ts",
+    "start": "node dist/index.ts",
+    "dev": "nodemon --exec ts-node ./api/index.ts",
     "type-check": "tsc -p tsconfig.json --noEmit"
   },
   "keywords": [],
