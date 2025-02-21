@@ -18,7 +18,8 @@ export const integrationSpec = {
     "output": [],
     "key_features": [
         "Bible Search",
-        "Bible Replace"
+        "Bible Replace",
+        "KJV"
     ],
     "author": "Joeonome",
     "permissions": {},
