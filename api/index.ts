@@ -62,9 +62,10 @@ const { message } = req.body;
 try {
     // Fetch passage from bible-api.com
     const response = await axios.get(`https://bible-api.com/${encodeURIComponent(message)}?translation=kjv`);
-    return res.json({status: "success", message: response.data.text});
+    
+    return res.json({message: response.data.text});
 } catch (error) {
-    return res.status(500).json({ error: "Error fetching Bible passage", message: message });
+    return res.status(500).json({ error: "Error fetching Bible passage", message: "mfdfdfdessage" });
 }
 });
 
