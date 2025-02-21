@@ -64,7 +64,7 @@ export const integrationSpec = {
           "options": ["Super-Admin", "Admin", "Manager", "Developer"]
         }
       ],
-      "target_url": "https://hng12-stage3-telex-integration-bible-lookup-app.vercel.app/webhook",
+      "target_url": "https://hng12-stage3-telex-integration-bible-lookup-app.vercel.app/bible",
       "tick_url": "https://hng12-stage3-telex-integration-bible-lookup-app.vercel.app/tick_url"
     }
   } 

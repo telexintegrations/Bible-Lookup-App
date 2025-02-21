@@ -9,8 +9,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
-app.use(express.json());
+app.use(cors()); // CORS Handling
+app.use(express.json()); // Middleware to parse JSON request bodies
 
 // Bible Lookup Endpoint
 app.get("/lookup", async (req: Request, res: Response) => {
@@ -23,10 +23,9 @@ app.get("/lookup", async (req: Request, res: Response) => {
         // Fetch verse from Bible API
         const apiUrl = `https://bible-api.com/${encodeURIComponent(reference)}?translation=kjv`;
         const response = await axios.get(apiUrl);
+    
         return res.json({
-           // reference: response.data.reference,
-            //verses: response.data.verses,
-            reference: response.data.text,
+            message: response.data.text,
             translation: response.data.translation_id,
     });
     } catch (error: any) {
@@ -42,30 +41,31 @@ app.get("/integration-spec", (req: Request, res: Response) => {
 });
 
 
+// Function to validate the Bible reference format
+const isValidReference = (reference: string): boolean => {
+    const regex = /^[A-Za-z ]+\s+\d+:\d+(-\d+)?$/;
+    return regex.test(reference);
+};
 // Posting to Telex
-app.post("/webhook", async (req: Request, res: Response) => {
-    
-
-    // validate input format
-        
-    try {
-        const {message, settings } = req.body;
-        if (!message || typeof message !== "string") {
-            return res.status(400).json({ message: "Bible reference is required" });
-        }
-        // Fetch verse from Bible API
-        const apiUrl = `https://bible-api.com/${encodeURIComponent(message)}?translation=kjv`;
-        const response = await axios.get(apiUrl);
-        return res.json({
-           // reference: response.data.reference,
-            //verses: response.data.verses,
-            status: "success",
-            message: response.data.text
+app.post("/bible", async (req: Request, res: Response) => {
+const { reference } = req.body;
+  // Check if reference is provided
+    if (!reference || typeof reference !== "string") {
+    return res.status(400).json({ error: "Missing Bible reference in request body" });
+}
+  // Validate reference format
+    if (!isValidReference(reference)) {
+    return res.status(400).json({
+        error: "Invalid format. Use 'Book Chapter:Verse' or 'Book Chapter:Verse-Verse' (e.g., 'John 3:16' or 'John 3:1-4')",
     });
-    } catch (error: any) {
-        console.error("Error fetching Bible verse:", error.message);
-        return res.status(500).json({ error: "Failed to fetch Bible verse" });
-    }
+}
+try {
+    // Fetch passage from bible-api.com
+    const response = await axios.get(`https://bible-api.com/${encodeURIComponent(reference)}?translation=kjv`);
+    return res.json(response.data);
+} catch (error) {
+    return res.status(500).json({ error: "Error fetching Bible passage" });
+}
 });
 
 
@@ -73,7 +73,6 @@ app.post("/webhook", async (req: Request, res: Response) => {
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
-
 
 
 export default app;
