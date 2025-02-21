@@ -19,12 +19,6 @@ app.get("/lookup", async (req: Request, res: Response) => {
         if (!reference || typeof reference !== "string") {
             return res.status(400).json({ error: "Bible reference is required" });
         }
-        
-// JSON Endpoint
-app.get("/integration-spec", (req: Request, res: Response) => {
-    res.json(integrationSpec);
-});
-
 
         // Fetch verse from Bible API
         const apiUrl = `https://bible-api.com/${encodeURIComponent(reference)}`;
@@ -41,10 +35,18 @@ app.get("/integration-spec", (req: Request, res: Response) => {
     }
 });
 
+
+// JSON Endpoint
+app.get("/integration-spec", (req: Request, res: Response) => {
+    res.json(integrationSpec);
+});
+
+
 // Start Server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
+
 
 
 export default app;
