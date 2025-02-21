@@ -47,32 +47,32 @@ const isValidReference = (reference: string): boolean => {
     return regex.test(reference);
 };
 // Posting to Telex
-app.post("/bibl", async (req: Request, res: Response) => {
-const { reference } = req.body;
+app.post("/bible", async (req: Request, res: Response) => {
+const { message } = req.body;
   // Check if reference is provided
-    if (!reference || typeof reference !== "string") {
-    return res.status(400).json({ error: "Missing Bible reference in request body" });
-}
+   // if (!message || typeof message !== "string") {
+   // return res.status(400).json({ error: "Missing Bible reference in request body" });
+//}
   // Validate reference format
-    if (!isValidReference(reference)) {
-    return res.status(400).json({
-        error: "Invalid format. Use 'Book Chapter:Verse' or 'Book Chapter:Verse-Verse' (e.g., 'John 3:16' or 'John 3:1-4')",
-    });
-}
+  //  if (!isValidReference(message)) {
+   // return res.status(400).json({
+   //     error: "Invalid format. Use 'Book Chapter:Verse' or 'Book Chapter:Verse-Verse' (e.g., 'John 3:16' or 'John 3:1-4')",
+   // });
+//}
 try {
     // Fetch passage from bible-api.com
-    const response = await axios.get(`https://bible-api.com/${encodeURIComponent(reference)}?translation=kjv`);
-    return res.json(response.data);
+    const response = await axios.get(`https://bible-api.com/${encodeURIComponent(message)}?translation=kjv`);
+    return res.json({message: response.data.text});
 } catch (error) {
-    return res.status(500).json({ error: "Error fetching Bible passage" });
+    return res.status(500).json({ error: "Error fetching Bible passage", message: message });
 }
 });
 
-app.post("/bible", async (req: Request, res: Response) => {
-    const { message } = req.body;
+//app.post("/bible", async (req: Request, res: Response) => {
+  //  const { message } = req.body;
     //console.log(settings);
-    return res.json({status: "success", message: "meerfds"})
-});
+    //return res.json({status: "success", message: "meerfds"})
+//});
 
 
 // Start Server
