@@ -47,7 +47,7 @@ const isValidReference = (reference: string): boolean => {
     return regex.test(reference);
 };
 // Posting to Telex
-app.post("/bible", async (req: Request, res: Response) => {
+app.post("/bibl", async (req: Request, res: Response) => {
 const { reference } = req.body;
   // Check if reference is provided
     if (!reference || typeof reference !== "string") {
@@ -66,6 +66,12 @@ try {
 } catch (error) {
     return res.status(500).json({ error: "Error fetching Bible passage" });
 }
+});
+
+app.post("/bible", async (req: Request, res: Response) => {
+    const { message } = req.body;
+    //console.log(settings);
+    return res.json({status: "success", message: "meerfds"})
 });
 
 
