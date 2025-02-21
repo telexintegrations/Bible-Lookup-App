@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import axios from "axios";
 import cors from "cors";
 import dotenv from "dotenv";
+import { integrationSpec } from "./integrationSpec";
 
 dotenv.config();
 
@@ -19,6 +20,12 @@ app.get("/lookup", async (req: Request, res: Response) => {
             return res.status(400).json({ error: "Bible reference is required" });
         }
         
+// JSON Endpoint
+app.get("/integration-spec", (req: Request, res: Response) => {
+    res.json(integrationSpec);
+});
+
+
         // Fetch verse from Bible API
         const apiUrl = `https://bible-api.com/${encodeURIComponent(reference)}`;
         const response = await axios.get(apiUrl);
