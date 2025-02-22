@@ -64,7 +64,7 @@ try {
     const response = await axios.get(`https://bible-api.com/${encodeURIComponent(newMessage)}?translation=kjv`);
     const result = response.data.text;
     // Return response
-    return res.json({message: result});
+    return res.json({message: `${newMessage}: ${result}`});
     // Error handling: returns original input
 } catch (error) {
     return res.status(500).json({ error: "Error fetching Bible passage", message: message });
