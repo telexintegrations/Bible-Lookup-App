@@ -171,6 +171,11 @@ Feel free to open issues or submit pull requests for improvements, bug fixes, or
 
 ---
 
+
+## Image
+
+![telex-integration-bible-lookup](https://github.com/user-attachments/assets/02abb614-9917-430f-9efd-7b196c37dc49)
+
 ## 💬 Acknowledgments
 
 - [Bible API](https://bible-api.com/) for providing free access to Bible texts.
