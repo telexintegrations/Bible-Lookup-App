@@ -67,15 +67,21 @@ try {
     return res.json({message: `${newMessage}: ${result}`});
     // Error handling: returns original input
 } catch (error) {
-    return res.status(500).json({ error: "Error fetching Bible passage", message: message });
+    return res.status(500).json({ message: message });
 }
 });
 
 
 // Start Server
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== "test") {
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
+}
+
+//app.listen(PORT, () => {
+  //  console.log(`Server running on http://localhost:${PORT}`);
+//});
 
 
 export default app;
