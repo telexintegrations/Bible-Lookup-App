@@ -104,7 +104,11 @@ To integrate this service into your **Telex.im** channel:
 - Click **Save**
 
 ### ⚡ **Step 3: Configure Trigger**
-- Set the webhook to trigger when messages match a Bible reference pattern (e.g., `Book Chapter:Verse`) by toggling on the **Bible Lookup App**.
+- Set the webhook to trigger when messages match a Bible reference pattern (e.g., `Book Chapter:Verse`) by toggling on the **Bible Lookup App**. Set the output to any channel of your choosing.
+
+### ⚡ **Step 4: Configure Trigger**
+- Trigger a response by going to the channel and typing your reference as "Book Chapter:verse(s)" [eg. John 3:16]
+- N.B: No passage would be generated if the aforementioned pattern is not followed and the response will be returned as the input. Also, the pattern must be strictly adhered to as additional characters/spacing will cause the input to be returned without modification.
 
 ---
 
@@ -170,6 +174,11 @@ Feel free to open issues or submit pull requests for improvements, bug fixes, or
 
 
 ---
+
+
+## Image
+
+![telex-integration-bible-lookup](https://github.com/user-attachments/assets/02abb614-9917-430f-9efd-7b196c37dc49)
 
 ## 💬 Acknowledgments
 
